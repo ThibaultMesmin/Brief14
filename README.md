@@ -29,6 +29,13 @@ L'application sera accessible à l'adresse http://localhost:3000
 
 4. Passage à la Suite : Si la vérification réussit, le contenu décodé est ajouté à req.user et le contrôle passe au middleware suivant avec next().
 
+### Pourquoi c'est Sécurisé
+1. Clé Secrète : La sécurité repose sur la clé secrète. Tant que cette clé est gardée secrète, personne ne peut générer un token valide.
+
+2. Impossible à Falsifier : Sans connaître la clé secrète, un pirate ne peut pas créer un nouveau token JWT valide avec, par exemple, un rôle admin. Si un pirate essaie de modifier le token, la signature ne correspondra plus, et la vérification échouera.
+
+
+
 ### Routes
 /login: Affiche un formulaire de connexion. Les utilisateurs peuvent saisir leur nom d'utilisateur et leur mot de passe.
 
@@ -37,6 +44,9 @@ L'application sera accessible à l'adresse http://localhost:3000
 /user: Accès réservé aux utilisateurs authentifiés ayant le rôle 'user' ou 'admin'. Affiche un message de bienvenue.
 
 /admin: Accès réservé aux utilisateurs authentifiés ayant le rôle 'admin'. Affiche un message de bienvenue pour les administrateurs.
+
+### Conclusion
+Les tokens JWT sont très sécurisés parce qu'ils utilisent une clé secrète pour la signature. Tant que cette clé reste secrète, il est impossible pour un pirate de générer un token valide.
 
 ### Cookie Parser
 Le module cookie-parser est utilisé pour lire les cookies dans les requêtes.
